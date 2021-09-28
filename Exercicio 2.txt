@@ -1,0 +1,57 @@
+
+Exercício 2
+
+package exercicios;
+
+
+public class Calculadora {
+	public double calcular (double num1, double num2, int operacao) {
+		double resultado = 0;
+		switch (operacao) {
+		case 1:
+			resultado = num1 + num2;
+			break;
+		case 2:
+			resultado = num1 - num2;
+			break;
+		case 3:
+			resultado = num1 * num2;
+			break;
+		case 4:
+			resultado = num1 / num2;
+			break;
+			default:
+				break;
+		
+		}return resultado;
+	}
+}
+package exercicios;
+
+import javax.swing.JOptionPane;
+
+public class MainCalculadora {
+
+	public static void main(String[] args) {
+		Calculadora calc = new Calculadora();
+		int opcao;
+		double resultado;
+		String menu = "Calculadora\n\n" + "Resultado soma\n" + "Resultado Subtração|n"+
+		"Resultado Multiplicação|n" + "Resultado Divisão \n" + "Finalizar";
+		opcao = Integer.parseInt(JOptionPane.showInputDialog(null, menu,
+				"Calculadora - Java", JOptionPane.QUESTION_MESSAGE));
+		
+		while (opcao != 5) {
+			String numero1 = JOptionPane.showInputDialog("Valor 1:");
+			String numero2 = JOptionPane.showInputDialog("Valor 2:");
+			opcao = Integer.parseInt(JOptionPane.showInputDialog(null, menu,
+					"Calculadora - Java", JOptionPane.QUESTION_MESSAGE));
+			resultado = calc.calcular(Double.parseDouble(numero1), 
+					Double.parseDouble(numero2), opcao);
+			
+			
+		}
+	}
+
+}
+

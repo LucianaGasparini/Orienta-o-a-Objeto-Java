@@ -1,0 +1,98 @@
+
+Exercício 3:
+
+package aula3;
+
+public class Medico {
+
+	private String crm;
+	private String nome;
+	private Double salario;
+	private Double valorConsulta;
+	private Integer qtdMedico;
+
+	public String getCrm() {
+		return crm;
+	}
+
+	public void setCrm(String crm) {
+		this.crm = crm;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Double getSalario() {
+		return salario;
+	}
+
+	public void setSalario(Double salario) {
+		this.salario = salario;
+	}
+
+	public Double getValorConsulta() {
+		return valorConsulta;
+	}
+
+	public void setValorConsulta(Double valorConsulta) {
+		this.valorConsulta = valorConsulta;
+	}
+
+	public Integer getQtdMedico() {
+		return qtdMedico;
+	}
+
+	public void setQtdMedico(Integer qtdMedico) {
+		this.qtdMedico = qtdMedico;
+	}
+//Método
+
+	public void pagamentoDinheiro() {
+		System.out.println("Honorário em dinheiro: " + valorConsulta);
+
+	}
+
+	public void pagamentoPlano() {
+		System.out.println("Honorário pelo Plano: " + valorConsulta * 0.70);
+	}
+
+}
+
+
+package aula3;
+
+public class TestaMedico {
+
+	public static void main(String[] args) {
+		Medico MedM = new Medico();
+		MedM.setCrm("12345");
+		MedM.setNome("Ana Maria");
+		MedM.setSalario(0.00);
+		MedM.setValorConsulta(250.00);
+		MedM.setQtdMedico(1);
+		MedM.pagamentoDinheiro();
+		MedM.pagamentoPlano();
+
+		System.out.println("Nome do Médico: " + MedM.getNome() + "\nCRM :" + MedM.getCrm() + "\n");
+
+		Medico MedP = new Medico();
+		MedP.setCrm("456789");
+		MedP.setNome("Antônio");
+		MedP.setSalario(0.00);
+		MedP.setValorConsulta(300.00);
+		MedP.setQtdMedico(1);
+		MedP.pagamentoDinheiro();
+		MedP.pagamentoPlano();
+
+		System.out.println("Nome do Médico: " + MedP.getNome() + "\nCRM :" + MedP.getCrm());
+
+		System.out.println("Total de Médicos: " + (MedP.getQtdMedico() + MedM.getQtdMedico()));
+
+	}
+
+}
