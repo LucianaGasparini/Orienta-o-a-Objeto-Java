@@ -55,14 +55,22 @@ public class Empregado {
 
 }
 
-
 package aula3;
 
 public class Program {
+		
 
+	
 	public static void main(String[] args) {
-		Empregado empregado1 = new Empregado("João", "da Silva", 7000.00);
+		Empregado empregado1 = new Empregado("João", "da Silva", 1900.00);
 		Empregado empregado2 = new Empregado("Maria", "dos Santos", 3000.00);
+		
+		System.out.println("Empregado : " + empregado1.getNome() + " " + empregado1.getSobrenome()
+		+ ", Salário: " + empregado1.getSalario());
+		
+		System.out.println("Empregado : " + empregado2.getNome() + " " + empregado2.getSobrenome()
+		+ ", Salário: " + empregado2.getSalario());
+
 
 //empregado.imprimirEmpregado();
 		empregado1.calculaImpostoRenda();
@@ -75,3 +83,4 @@ public class Program {
 
 	}
 }
+
