@@ -1,0 +1,99 @@
+Exercício 2
+
+package aula3;
+
+import java.time.LocalDate;
+
+
+public class Pedido {
+	
+ private Integer numero;
+ private LocalDate dataPedido;
+ private double quantidade;
+ private double valor;
+ private double total;
+ 
+ 
+public Pedido(Integer numero, LocalDate dataPedido, double quantidade, double valor) {
+	super();
+	this.numero = numero;
+	this.dataPedido = dataPedido;
+	this.quantidade = quantidade;
+	this.valor = valor;
+
+}
+
+public Integer getNumero() {
+	return numero;
+}
+
+public void setNumero(Integer numero) {
+	this.numero = numero;
+}
+
+public LocalDate getDataPedido() {
+	return dataPedido;
+}
+
+public void setDataPedido(LocalDate dataPedido) {
+	this.dataPedido = dataPedido;
+}
+
+public double getQuantidade() {
+	return quantidade;
+}
+
+public void setQuantidade(double quantidade) {
+	this.quantidade = quantidade;
+}
+
+public double getValor() {
+	return valor;
+}
+
+public void setValor(double valor) {
+	this.valor = valor;
+}
+
+public double getTotal() {
+	return total;
+}
+
+public void setTotal(double total) {
+	this.total = total;
+}
+
+public double realizarPedido () {
+	if (dataPedido.getDayOfWeek().getValue()==7) {
+	return quantidade*valor * 0.90;
+	}
+
+	else {
+		return quantidade*valor;
+ 
+	}
+}
+}
+
+package aula3;
+
+import java.time.LocalDate;
+
+public class AppPedido {
+
+	public static void main(String[] args) {
+		
+Pedido pedido = new Pedido(1, LocalDate.of(2021, 3, 10), 50.0, 3.00);
+Pedido pedido1 = new Pedido(1, LocalDate.of(2021, 9, 19), 50.0, 3.00);
+Pedido pedido2 = new Pedido(1, LocalDate.of(2021, 9, 20), 150.0, 3.00);
+
+
+
+
+System.out.println("Total do pedido é: " + pedido.getQuantidade() + " - Valor total: " + pedido.realizarPedido());
+System.out.println("Total do pedido1 é: " + pedido1.getQuantidade() + " - Valor total: " + pedido1.realizarPedido());
+System.out.println("Total do pedido2 é: " + pedido1.getQuantidade() + " - Valor total: " + pedido2.realizarPedido());
+	}
+
+}
+

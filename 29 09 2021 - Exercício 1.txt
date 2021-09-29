@@ -1,0 +1,77 @@
+Exercício 1 - data 29/09/2021
+
+package aula3;
+
+public class Empregado {
+	private String nome;
+	private String sobrenome;
+	private double salario;
+	
+	public Empregado(String nome, String sobrenome, double salario) {
+		super();
+		this.nome = nome;
+		this.sobrenome = sobrenome;
+		this.salario = salario;
+	}
+	public String getNome() {
+		return nome;
+	
+	}
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	public String getSobrenome() {
+		return sobrenome;
+	}
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+	public double getSalario() {
+		return salario;
+	}
+	public void setSalario(double salario) {
+		this.salario = salario;
+	}
+	
+	public void calculaImpostoRenda() {
+		if (this.salario < 1903.98) {
+								
+		}
+		else if (this.salario >= 1903.98 && this.salario < 2826.65) {
+			salario *= 0.925;
+		}
+		else if (this.salario >= 2826.66 && this.salario < 3751.05) {
+			salario *= 0.85;
+			
+		}
+		else if (this.salario >=3751.05 && this.salario < 4664.68) {
+			salario *= 0.775;
+			
+		}
+		else if (this.salario >= 4664.68) {
+			salario *= 0.725;
+		}
+	}
+
+}
+
+
+package aula3;
+
+public class Program {
+
+	public static void main(String[] args) {
+		Empregado empregado1 = new Empregado("João", "da Silva", 7000.00);
+		Empregado empregado2 = new Empregado("Maria", "dos Santos", 3000.00);
+
+//empregado.imprimirEmpregado();
+		empregado1.calculaImpostoRenda();
+		empregado2.calculaImpostoRenda();
+//System.out.println(empregado.getNome(), empregado.getSobrenome(), empregado.getSalario());
+		System.out.println("Empregado : " + empregado1.getNome() + " " + empregado1.getSobrenome()
+				+ ", Salário com desconto do IRRF: " + empregado1.getSalario());
+		System.out.println("Empregado : " + empregado2.getNome() + " " + empregado2.getSobrenome()
+				+ ", Salário com desconto do IRRF: " + empregado2.getSalario());
+
+	}
+}
