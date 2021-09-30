@@ -1,0 +1,76 @@
+Exercício 3
+
+package aula4;
+
+public class ImpostoDeRenda {
+	protected String nome;
+	protected String telefone;
+	protected String email;
+	protected Double rendimentos;
+
+	public ImpostoDeRenda(String nome, Double rendimentos) {
+		super();
+		this.nome = nome;
+		this.rendimentos = rendimentos;
+	}
+
+}
+
+package aula4;
+
+public class PessoaFisica extends ImpostoDeRenda {
+	private String cpf;
+	private String rg;
+
+	public PessoaFisica(String nome, Double rendimentos, String cpf, String rg) {
+		super(nome, rendimentos);
+		this.cpf = cpf;
+		this.rg = rg;
+	}
+
+	public double calcularIr() {
+		return this.rendimentos *= 0.12;
+	}
+
+	@Override
+	public String toString() {
+		return "Nome: " + nome + "\nCPF: " + cpf + "\nRG: " + rg + "\nValor do IR a pagar: ";
+	}
+}
+package aula4;
+
+public class PessoaJuridica extends ImpostoDeRenda {
+	private String cnpj;
+	private String inscEstadual;
+
+	public PessoaJuridica(String nome, Double rendimentos, String cnpj, String inscEstadual) {
+		super(nome, rendimentos);
+		this.cnpj = cnpj;
+		this.inscEstadual = inscEstadual;
+	}
+
+	public double calcularIr() {
+		return this.rendimentos *= 0.15;
+	}
+
+	@Override
+	public String toString() {
+		return "Razão Social: " + nome + "\nCNPJ: " + cnpj + "\nInscrição Estadual: " + inscEstadual	+ "\nValor do IR a pagar: ";
+	}
+}
+
+package aula4;
+
+public class TesaIr {
+
+	public static void main(String[] args) {
+		PessoaFisica pessoaFisica = new PessoaFisica("Luciana", 15000.00, "05001866799", "059919640");
+		PessoaJuridica pessoaJuridica = new PessoaJuridica("Bonnie ME", 500000.00, "28706444000102", "19640");
+		pessoaFisica.calcularIr();
+		pessoaJuridica.calcularIr();
+
+		System.out.println(pessoaFisica.toString() + pessoaFisica.rendimentos + "\n\n" + pessoaJuridica.toString()+ pessoaJuridica.rendimentos);
+	}
+
+}
+

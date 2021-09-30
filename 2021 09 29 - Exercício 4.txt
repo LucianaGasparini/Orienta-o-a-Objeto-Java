@@ -1,0 +1,76 @@
+	Exercício 4
+					
+	package aula4;
+
+public class Funcionario {
+	protected String nome;
+	protected String cpf;
+	protected double salario;
+	protected String turno;
+
+	public Funcionario(String nome, double salario) {
+		super();
+		this.nome = nome;
+		this.salario = salario;
+	}
+
+	public double participacao() {
+		return this.salario *= 1.01;
+	}
+
+	@Override
+	public String toString() {
+		return "Nome Funcionário: " + nome + "\nSalário Base: "+ salario;
+	}
+}
+
+package aula4;
+
+public class Gerente extends Funcionario {
+	private String nivel;
+
+	public Gerente(String nome, double salario, String nivel) {
+		super(nome, salario);
+		this.nivel = nivel;
+	}
+
+	public double salarioGerente() {
+		return salario += 200.00;
+	}
+}
+
+package aula4;
+
+public class Assistente extends Funcionario {
+	private double adicional;
+
+	public Assistente(String nome, double salario, double adicional) {
+		super(nome, salario);
+		this.adicional = adicional;
+	}
+	public double salarioAssistente() {
+		return salario += adicional;
+	}
+}
+
+package aula4;
+
+public class ProgramFuncGerAss {
+
+	public static void main(String[] args) {
+	
+		Gerente gerente = new Gerente ("Luciana " , 15000.00, " Senior" );
+		Assistente assistente = new Assistente ("Leonardo ", 2000.00, 50.00);
+		
+			
+		System.out.println(gerente.toString());
+		System.out.println("Salário com participação nos lucros: "+ gerente.participacao());
+		System.out.println("Salário Bruto: "+ gerente.salarioGerente());
+		
+		System.out.println("\n" + assistente.toString());
+		System.out.println("Salario com participação nos lucros: "+ assistente.participacao());
+		System.out.println("Salário Bruto: "+ assistente.salarioAssistente());
+		
+	}
+	
+
