@@ -1,0 +1,171 @@
+package oficina;
+
+public enum TipoServico {
+OLEO (100),
+LAVAGEM(50),
+REVISAO(200);
+	
+	private double valorPorServico;
+	
+private TipoServico(double valorPorServico) {
+	this.valorPorServico = valorPorServico;
+	
+}
+
+public double getValorPorServico() {
+	return valorPorServico;
+}
+
+}
+
+package oficina;
+
+public interface Oficina {
+	
+public double lavarVeiculo();
+public double trocarOleo();
+public double revisao();
+
+}
+
+package oficina;
+
+public class Proprietario {
+private String nome;
+
+public Proprietario(String nome) {
+		this.nome = nome;
+}
+
+public String getNome() {
+	return nome;
+}
+@Override
+public String toString () {
+	return "Proprietário nome: " + nome;
+}
+}
+
+package oficina;
+
+import java.time.LocalDate;
+
+public abstract class Veiculo implements Oficina {
+	protected String modelo;
+	protected double valorCobrado;
+	protected LocalDate dataConserto;
+	public Proprietario proprietario;
+		
+	
+	public Veiculo(String modelo, LocalDate dataConserto, Proprietario proprietario) {
+		super();
+		this.modelo = modelo;
+		this.dataConserto = dataConserto;
+		this.proprietario = proprietario;
+	}
+
+	@Override
+	public String toString() {
+		return "Veiculo modelo:" + modelo + "\nConserto data: " + dataConserto;
+	}
+	}
+
+	public double getValorCobrado() {
+		return valorCobrado;
+	}
+
+}
+package oficina;
+
+import java.time.LocalDate;
+
+public class Carro extends Veiculo {
+	private String categoria;
+
+	public Carro(String modelo, LocalDate dataConserto, Proprietario proprietario, String categoria) {
+		super(modelo, dataConserto, proprietario);
+		this.categoria = categoria;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	@Override
+	public double lavarVeiculo() {
+		return valorCobrado += TipoServico.LAVAGEM.getValorPorServico();
+
+	}
+
+	@Override
+	public double trocarOleo() {
+		if (dataConserto.getDayOfWeek().name().equals("SATURDAY")) {
+			return valorCobrado += TipoServico.OLEO.getValorPorServico() - 50;
+		} else {
+			valorCobrado += TipoServico.OLEO.getValorPorServico();
+		}
+		return valorCobrado;
+	}
+
+	@Override
+	public double revisao() {
+		if (dataConserto.getDayOfMonth() == 8) {
+			valorCobrado += TipoServico.REVISAO.getValorPorServico() * 0.90;
+		} else {
+			valorCobrado += TipoServico.REVISAO.getValorPorServico();
+		}
+		return valorCobrado;
+	}
+
+}
+
+package oficina;
+
+import java.time.LocalDate;
+
+public class Moto extends Veiculo{
+	private Integer cilindradas;
+
+	public Moto(String modelo, LocalDate dataConserto, Proprietario proprietario, Integer cilindradas) {
+		super(modelo, dataConserto, proprietario);
+		this.cilindradas = cilindradas;
+	}
+
+	@Override
+	public double lavarVeiculo() {
+		return valorCobrado += TipoServico.LAVAGEM.getValorPorServico();
+	}
+
+	@Override
+	public double trocarOleo() {
+		return valorCobrado += TipoServico.OLEO.getValorPorServico();
+	}
+
+	@Override
+	public double revisao() {		
+		return valorCobrado = valorCobrado + TipoServico.REVISAO.getValorPorServico();
+	}
+	
+
+}
+
+import java.time.LocalDate;
+
+public class TestaOficina {
+
+	public static void main(String[] args) {
+	Proprietario proprietario1 = new Proprietario ("Luciana");
+	Veiculo veiculo1 = new Carro("Suzuki", LocalDate.of(2021, 8, 7),proprietario1, "Sx4");
+	
+	
+	veiculo1.trocarOleo();
+	veiculo1.revisao();
+	
+	System.out.println(proprietario1.toString());
+	System.out.println(veiculo1.toString());
+	System.out.println("Valor cobrado pelo serviço: "+ veiculo1.getValorCobrado());
+	
+	}
+}
+
+
