@@ -1,0 +1,91 @@
+package exercicio;
+
+public class Aluno {
+	public String nome;
+	public double nota1;
+	public double nota2;
+
+	public Aluno(String nome, double nota1, double nota2) {
+		super();
+		this.nome = nome;
+		this.nota1 = nota1;
+		this.nota2 = nota2;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public double getNota1() {
+		return nota1;
+	}
+
+	public double getNota2() {
+		return nota2;
+	}
+
+	public double calcularMedia() throws AlunoException {
+		if ((nota1 <= 0 || nota1 > 10) || (nota2 <= 0 || nota2 > 10))
+			throw new AlunoException("Nota Inválida");
+
+		else{
+			if ( ((nota1 + nota2) / 2)>= 7.0)
+				System.out.println("Aluno Aprovado");
+			else
+				System.out.println("Aluno Reprovado");
+			
+			return (nota1 + nota2) / 2;
+		}
+
+	}
+}
+
+package exercicio;
+
+public class AlunoException extends Exception {
+	public AlunoException(String message) {
+		super(message);
+	}
+
+}
+package exercicio;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class TestaMedia {
+
+	public static void main(String[] args) {
+
+		Aluno aluno1 = new Aluno("Lucas", 7.0, 7.0);
+		Aluno aluno2 = new Aluno("Pedro", 10.0, 2.5);
+		Aluno aluno3 = new Aluno("Carla", 0.0, 8.5);
+		Aluno aluno4 = new Aluno("Michele", 9.5, 9.0);
+		Aluno aluno5 = new Aluno("Laís", 5.5, 6.0);
+		Aluno aluno6 = new Aluno("José", 5.5, 11.0);
+
+		List lista = new ArrayList();
+
+		lista.add(aluno1);
+		lista.add(aluno2);
+		lista.add(aluno3);
+		lista.add(aluno4);
+		lista.add(aluno5);
+		lista.add(aluno6);
+
+		System.out.println("Quantidade de Alunos: " + lista.size());
+
+		for (int i = 0; i < lista.size(); i++) {
+			try {
+				Aluno a = (Aluno) lista.get(i);
+				System.out.println("Aluno: " + a.getNome());
+				System.out.println("Notas: " + a.getNota1() + "  " + a.getNota2());
+				System.out.println("A média é: " + a.calcularMedia() + "\n");
+			} catch (AlunoException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+
+}
+
